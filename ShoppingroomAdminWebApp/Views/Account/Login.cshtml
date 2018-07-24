@@ -1,0 +1,64 @@
+﻿@model ShoppingroomAdminWebApp.Models.Account.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Extranet@Shoppingroom.hr</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-login">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h2>Extranet | Shoppingroom.hr</h2>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4>Sign-in to manage your trademark</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                @using (Html.BeginForm("UserLogin", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(m => m.iUsername, new { @class = "form-control", @placeholder = "Username", @tabindex = "1" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(m => m.iPassword, new { @class = "form-control", @placeholder = "Password", @tabindex = "2" })
+                                        </div>
+                                        @Html.ValidationMessage("pInvalidUserData", new { @class = "text-danger" });
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-default" value="Log In" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+ 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
