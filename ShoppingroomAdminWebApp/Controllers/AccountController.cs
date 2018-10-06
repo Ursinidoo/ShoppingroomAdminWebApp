@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ShoppingroomAdminWebApp.Models.Account;
+using ShoppingroomAdminWebApp.Core;
 
 namespace ShoppingroomAdminWebApp.Controllers
 {
@@ -18,7 +19,10 @@ namespace ShoppingroomAdminWebApp.Controllers
         [HttpPost]
         public ActionResult UserLogin(User pUser)
         {
-            if (pUser.iUsername == null || pUser.iPassword == null)
+            KorisnikService tkorisnikService = new KorisnikService();
+            Boolean tIsAuthSuccess = tkorisnikService.authenticate(pUser.iUsername, pUser.iPassword);
+
+            if (!tIsAuthSuccess)
             {
                 ModelState.AddModelError("pInvalidUserData", "Invalid username or password");
                 return View("Login");
